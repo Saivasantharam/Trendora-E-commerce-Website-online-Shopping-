@@ -1,0 +1,374 @@
+/* ============================================================
+   TRENDORA — RESPONSIVE SYSTEM
+   File: src/styles/responsive.css
+   Import in: src/index.css  →  @import './styles/responsive.css';
+   
+   Breakpoints:
+   📱 Mobile      : 320px – 768px    (sm & down)
+   💻 Small Laptop: 769px – 1024px   (md)
+   🖥️  Desktop     : 1025px+          (lg+)
+============================================================ */
+
+/* ── BASE RESET ──────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body { overflow-x: hidden; }
+img  { max-width: 100%; height: auto; display: block; }
+
+/* ── CONTAINER ───────────────────────────────────────────── */
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (max-width: 480px) {
+  .container { max-width: 100%; padding-left: 0.75rem; padding-right: 0.75rem; }
+}
+@media (min-width: 481px) and (max-width: 768px) {
+  .container { max-width: 720px; padding-left: 1.25rem; padding-right: 1.25rem; }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container { max-width: 960px; padding-left: 1.5rem; padding-right: 1.5rem; }
+}
+@media (min-width: 1025px) {
+  .container { max-width: 1200px; padding-left: 2rem; padding-right: 2rem; }
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   1. NAVBAR (CRITICAL FOR HAMBURGER MENU)
+══════════════════════════════════════════════════════════ */
+
+/* ── MOBILE MENU DROPDOWN STYLES ── */
+.mobile-menu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  opacity: 0;
+  width: 100%;
+  background-color: #ffffff; /* Match your navbar bg */
+  border-top: 1px solid rgba(226, 232, 240, 0.5);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+}
+
+/* When active via JS */
+.mobile-menu.active {
+  max-height: 400px; /* Enough height for all links */
+  opacity: 1;
+}
+
+.mobile-menu a {
+  display: block;
+  padding: 0.875rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #0f172a;
+  border-bottom: 1px solid #f1f5f9;
+  transition: all 0.2s ease;
+}
+
+.mobile-menu a:last-child {
+  border-bottom: none;
+}
+
+.mobile-menu a:hover {
+  background-color: #f8fafc;
+  color: #c9952a; /* Your gold accent */
+  padding-left: 2rem; /* Slight slide effect */
+}
+
+/* 📱 Mobile: 320px – 768px */
+@media (max-width: 768px) {
+  nav {
+    padding: 0 1rem;
+    height: 70px; /* Slightly taller for touch targets */
+  }
+  
+  /* Hide desktop links */
+  .nav-links { 
+    display: none !important; 
+  }
+  
+  /* Hide desktop search (optional, put inside mobile menu if needed) */
+  .nav-search { 
+    display: none !important; 
+  }
+  
+  /* Hide desktop CTA */
+  .nav-cta { 
+    display: none !important; 
+  }
+  
+  /* Show Hamburger */
+  .hamburger { 
+    display: flex !important; 
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: background 0.2s;
+  }
+  
+  .hamburger:hover {
+    background-color: #f1f5f9;
+  }
+
+  /* Cart badge smaller on mobile */
+  .cart-btn { 
+    padding: 0.4rem 0.6rem; 
+    font-size: 0.7rem; 
+  }
+}
+
+/* 💻 Small Laptop */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .nav-links a, .nav-links button { 
+    font-size: 0.78rem; 
+    padding: 0.5rem 0.6rem; 
+  }
+  .nav-search input { width: 160px; }
+  .nav-search input:focus { width: 220px; }
+}
+
+/* 🖥️ Desktop */
+@media (min-width: 1025px) {
+  /* Force hide hamburger and mobile menu on desktop */
+  .hamburger { 
+    display: none !important; 
+  }
+  .mobile-menu {
+    display: none !important;
+  }
+  /* Force show desktop links */
+  .nav-links { 
+    display: flex !important; 
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   2. HERO SECTION
+══════════════════════════════════════════════════════════ */
+
+@media (max-width: 480px) {
+  .hero-section { min-height: 480px; padding: 80px 0 40px; text-align: center; }
+  .hero-inner { grid-template-columns: 1fr !important; gap: 1.5rem; }
+  .hero-title { font-size: 1.9rem !important; line-height: 1.2; }
+  .hero-subtitle { font-size: 0.9rem !important; }
+  .hero-desc { font-size: 0.8rem; margin: 0 auto 1.5rem; }
+  .hero-ctas { justify-content: center; flex-wrap: wrap; gap: 0.75rem; }
+  .hero-ctas a, .hero-ctas button { font-size: 0.8rem; padding: 0.6rem 1.2rem; }
+  .hero-card, .hero-images { display: none !important; }
+  .hero-social { justify-content: center; }
+  .quick-buy-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .hero-section { min-height: 560px; padding: 90px 0 50px; }
+  .hero-inner { grid-template-columns: 1fr !important; gap: 2rem; text-align: center; }
+  .hero-title { font-size: 2.5rem !important; }
+  .hero-ctas { justify-content: center; }
+  .hero-card { display: none !important; }
+  .quick-buy-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero-section { min-height: 580px; }
+  .hero-inner { gap: 2rem; }
+  .hero-title { font-size: 3.2rem !important; }
+  .quick-buy-grid { grid-template-columns: repeat(4, 1fr) !important; }
+}
+
+@media (min-width: 1025px) {
+  .hero-section { min-height: 650px; }
+  .hero-title { font-size: 4rem !important; }
+  .hero-inner { grid-template-columns: 1fr auto; gap: 3rem; }
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   3. PRODUCT CARDS GRID
+══════════════════════════════════════════════════════════ */
+
+@media (max-width: 480px) {
+  .products-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 0.75rem !important; }
+  .product-card-img { height: 160px !important; }
+  .product-card-body { padding: 0.6rem !important; }
+  .product-card-title { font-size: 0.75rem !important; }
+  .product-card-price { font-size: 0.85rem !important; }
+  .product-card-btn { font-size: 0.65rem !important; padding: 0.35rem 0.6rem !important; }
+  .product-badge { font-size: 0.55rem !important; padding: 0.15rem 0.4rem !important; }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .products-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 1rem !important; }
+  .product-card-img { height: 200px !important; }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .products-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 1.25rem !important; }
+}
+
+@media (min-width: 1025px) {
+  .products-grid { grid-template-columns: repeat(4, 1fr) !important; gap: 1.5rem !important; }
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   4. BANNER SECTION
+══════════════════════════════════════════════════════════ */
+
+@media (max-width: 480px) {
+  .banner-grid { grid-template-columns: 1fr !important; gap: 1.5rem; }
+  .banner-img { max-width: 100% !important; height: 220px !important; }
+  .banner-title { font-size: 1.5rem !important; }
+  .promo-cards-grid { grid-template-columns: 1fr !important; }
+  .promo-card { height: 160px !important; }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .banner-grid { grid-template-columns: 1fr !important; gap: 2rem; text-align: center; }
+  .banner-img { max-width: 360px !important; height: 280px !important; margin: 0 auto; }
+  .promo-cards-grid { grid-template-columns: 1fr 1fr !important; }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .banner-grid { gap: 2rem; }
+  .promo-cards-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+@media (min-width: 1025px) {
+  .banner-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
+  .promo-cards-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   5. PAGE HERO HEADERS (MensWear / KidsWear / Electronics)
+══════════════════════════════════════════════════════════ */
+
+@media (max-width: 480px) {
+  .page-hero { padding: 2rem 0.75rem; }
+  .page-hero-grid { grid-template-columns: 1fr !important; gap: 1.5rem; text-align: center; }
+  .page-hero-title { font-size: 1.8rem !important; }
+  .page-hero-desc { font-size: 0.78rem; }
+  .page-hero-btns { justify-content: center; flex-wrap: wrap; }
+  .page-hero-images, .bottom-ad-images { display: none !important; }
+  .page-hero-trust { justify-content: center; }
+  .category-filter { gap: 0.4rem !important; }
+  .category-filter button { padding: 0.3rem 0.75rem !important; font-size: 0.65rem !important; }
+  .promo-strip { font-size: 0.6rem !important; gap: 0.5rem !important; flex-wrap: wrap; justify-content: center; }
+  .promo-3-grid { grid-template-columns: 1fr !important; }
+  .promo-3-card { height: 140px !important; }
+  .bottom-ad { padding: 1.5rem !important; flex-direction: column !important; }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .page-hero { padding: 2.5rem 1.25rem; }
+  .page-hero-grid { grid-template-columns: 1fr !important; text-align: center; gap: 2rem; }
+  .page-hero-title { font-size: 2.2rem !important; }
+  .page-hero-btns { justify-content: center; }
+  .promo-3-grid { grid-template-columns: 1fr 1fr !important; }
+  .promo-3-grid > div:last-child { grid-column: span 2; }
+  .stats-row { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .page-hero-title { font-size: 2.8rem !important; }
+  .promo-3-grid { grid-template-columns: repeat(3, 1fr) !important; }
+  .stats-row { grid-template-columns: repeat(4, 1fr) !important; }
+}
+
+@media (min-width: 1025px) {
+  .page-hero-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
+  .promo-3-grid { grid-template-columns: repeat(3, 1fr); }
+  .stats-row { grid-template-columns: repeat(4, 1fr); }
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   6. FOOTER
+══════════════════════════════════════════════════════════ */
+
+@media (max-width: 480px) {
+  .footer-grid { grid-template-columns: 1fr !important; gap: 1.5rem; text-align: center; }
+  .footer-logo { justify-content: center !important; }
+  .footer-links-grid { grid-template-columns: 1fr 1fr !important; }
+  .footer-social { justify-content: center !important; margin-top: 1rem; }
+  .footer-bottom { font-size: 0.7rem; text-align: center; }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 1.5rem; }
+  .footer-links-grid { grid-template-columns: 1fr 1fr 1fr !important; }
+}
+
+@media (min-width: 769px) {
+  .footer-grid { grid-template-columns: 1fr 2fr !important; }
+  .footer-links-grid { grid-template-columns: repeat(3, 1fr) !important; }
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   7. CART SIDEBAR
+══════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .cart-sidebar { width: 100% !important; }
+}
+
+@media (min-width: 769px) {
+  .cart-sidebar { width: 340px !important; }
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   8. POPUP / MODAL
+══════════════════════════════════════════════════════════ */
+
+@media (max-width: 480px) {
+  .popup-card { width: 92vw !important; max-width: 360px; padding: 1.25rem !important; }
+  .popup-card h1 { font-size: 1rem !important; }
+  .popup-card input, .popup-card textarea { font-size: 0.8rem !important; }
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   9. TYPOGRAPHY SCALE
+══════════════════════════════════════════════════════════ */
+
+@media (max-width: 480px) {
+  h1 { font-size: clamp(1.6rem, 6vw, 2rem); }
+  h2 { font-size: clamp(1.3rem, 5vw, 1.6rem); }
+  h3 { font-size: clamp(1rem, 4vw, 1.2rem); }
+  p  { font-size: 0.82rem; line-height: 1.65; }
+  .text-xs  { font-size: 0.65rem !important; }
+  .text-sm  { font-size: 0.78rem !important; }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  h1 { font-size: clamp(2rem, 5vw, 2.8rem); }
+  h2 { font-size: clamp(1.5rem, 4vw, 2rem); }
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   10. UTILITY HELPERS
+══════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .hide-mobile { display: none !important; }
+  .show-mobile { display: block !important; }
+  .full-mobile { width: 100% !important; }
+  .center-mobile { text-align: center !important; }
+  .justify-center-mobile { justify-content: center !important; }
+}
+
+@media (min-width: 1025px) {
+  .hide-desktop { display: none !important; }
+}
